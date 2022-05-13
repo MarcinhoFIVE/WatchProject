@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground">
 
         <TextView
@@ -54,7 +54,8 @@
             app:layout_constraintLeft_toRightOf="@+id/textView2"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:text="Pork, Tomatoes, Onions, Salt, Pepper, Garlic"/>
+            tools:text="Pork, Tomatoes, Onions, Salt, Pepper, Garlic"
+            android:layout_marginLeft="8dp" />
 
         <TextView
             android:id="@+id/textView3"

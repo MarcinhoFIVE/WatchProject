@@ -1,6 +1,7 @@
 package br.mdan.watchproject
 
 import android.content.Context
+import br.mdan.shared.Meal
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader

@@ -1,4 +1,4 @@
-package br.mdan.watchproject
+package br.mdan.shared
 
 data class Meal(
     val title: String,

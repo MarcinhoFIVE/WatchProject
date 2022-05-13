@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import br.mdan.shared.Meal
 import kotlinx.android.synthetic.main.adapter_meal.view.*
 
 class MealListAdapter(
@@ -13,9 +14,10 @@ class MealListAdapter(
 
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) {
         val meal = meals[position]
-        val title = R.id.title
+        //var title = meal.title
 
         holder.itemView.title.text = meal.title
+        //title = meal.title
         holder.itemView.ingredients.text = meal.ingredients.joinToString(separator = ", ")
         holder.itemView.calories.text = meal.calories.toString()
         holder.itemView.star.visibility = if (meal.favorite) View.VISIBLE else View.INVISIBLE

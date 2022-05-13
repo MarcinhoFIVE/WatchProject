@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">WatchProject</string>
-    <string name="ingredients">Ingredientes</string>
-    <string name="calories">Calories</string>
+    <string name="ingredients">Ingredientes:</string>
+    <string name="calories">Calories:</string>
 </resources>
