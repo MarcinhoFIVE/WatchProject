@@ -18,6 +18,13 @@ class MealActivity : Activity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_meal)
+
+        client = GoogleApiClient.Builder(this)
+            .addConnectionCallbacks(this)
+            .addApi(Wearable.API)
+            .build()
+        client.connect()
+
     }
 
     override fun onConnected(p0: Bundle?) {
