@@ -1,13 +1,16 @@
 package br.mdan.watchproject
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import br.mdan.shared.Meal
 import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.wearable.PutDataRequest
 import com.google.android.gms.wearable.Wearable
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_meal.*
+import androidx.wear.activity.ConfirmationActivity
 
 class MealActivity : Activity(),
     GoogleApiClient.ConnectionCallbacks {
@@ -24,6 +27,10 @@ class MealActivity : Activity(),
             .addApi(Wearable.API)
             .build()
         client.connect()
+
+        ivStar.setOnClickListener {
+            sendLike()
+        }
 
     }
 
@@ -45,5 +52,32 @@ class MealActivity : Activity(),
             calories.text = getString(R.string.calories, it.calories)
             ingredients.text = it.ingredients.joinToString (", ")
         }
+    }
+
+    private fun sendLike() {
+        currentMeal?.let {
+            val bytes = Gson().toJson(it.copy(favorite = true)).toByteArray()
+            Wearable.DataApi.putDataItem(
+                client,
+                PutDataRequest.create("/liked")
+                    .setData(bytes)
+                    .setUrgent()
+            ).setResultCallback {
+                showConfirmationScreen()
+            }
+        }
+    }
+
+    private fun showConfirmationScreen() {
+        val intent = Intent(this, ConfirmationActivity::class.java)
+        intent.putExtra(
+            ConfirmationActivity.EXTRA_ANIMATION_TYPE,
+            ConfirmationActivity.SUCCESS_ANIMATION
+        )
+        intent.putExtra(
+            ConfirmationActivity.EXTRA_MESSAGE,
+            getString(R.string.starred_meal)
+        )
+        startActivity(intent)
     }
 }
